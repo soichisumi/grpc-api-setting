@@ -1,0 +1,38 @@
+syntax = "proto3";
+package proto;
+
+import "google/protobuf/empty.proto";
+
+// End Point
+service Server{
+    rpc GetData (GetDataRequest) returns (GetDataResponse) {}
+    rpc SetData (SetDataRequest) returns (google.protobuf.Empty) {}
+    rpc ListData (google.protobuf.Empty) returns (ListDataResponse) {}
+    rpc DeleteData (DeleteDataRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetDataRequest {
+    string key = 1;
+}
+
+message GetDataResponse{
+    string value = 1;
+}
+
+message SetDataRequest {
+    string key = 1;
+    string value = 2;
+}
+
+message ListDataResponse{
+    repeated Data data = 1;
+}
+
+message Data {
+    string key = 1;
+    string value = 2;
+}
+
+message DeleteDataRequest {
+    string key = 1;
+}
